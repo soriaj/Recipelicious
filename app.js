@@ -361,7 +361,7 @@ function searchRecipe(query){
    const params = {
       q: query
    }
-   console.log(params);
+   
    const queryString = formatQueryParams(params);
    const url = `${searchURL}?key=${apiKey}&${queryString}`;
 
