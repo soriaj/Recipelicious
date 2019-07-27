@@ -1,7 +1,6 @@
 'use strict'
 
-// const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
-const apiKey = 'd270f61c8c9fe2ef89633f4b609966de';
+const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
@@ -311,10 +310,11 @@ const data = {
 
 
 function displayRecipes(recipe){
+    let page = 1;
     let recipes = recipe.recipes;
     $('.container__top').empty();
 
-    recipes.slice(start, end).forEach((cur,i) => {
+    recipes.forEach((cur,i) => {
         let title = cur.title;
         if(title.length > 28){
             title = `${title.substring(0, 28)}...`;
@@ -339,10 +339,9 @@ function displayRecipes(recipe){
     $('.js__nextBtn').on('click', function(event){
         event.preventDefault();
         page++;
+        console.log(page);
         // This is where I need help to update page and to searchRecipe function
-    });
-
-    
+    });    
 }
 
 function callSearchAPI(url){
@@ -373,7 +372,8 @@ function searchRecipe(query, page){
    }
 
    const queryString = formatQueryParams(params);
-   const url = `${searchURL}?key=${apiKey}&&count=10&${queryString}`;
+   console.log(queryString);
+   const url = `${searchURL}?key=${apiKey}&count=10&${queryString}`;
    console.log(url);
 
    // Search API with user input url formatted
@@ -402,7 +402,7 @@ function getSearchValue(){
 }
 
 function initialPageDisplay(){
-   const defaultURL = `${searchURL}?key=${apiKey}&q=chicken&page=1`;
+   const defaultURL = `${searchURL}?key=${apiKey}&count=10&q=chicken&page=1`;
 
    // Call API using default search item
    callSearchAPI(defaultURL);
