@@ -1,6 +1,7 @@
 'use strict'
 
-const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
+// const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
+const apiKey = 'd270f61c8c9fe2ef89633f4b609966de';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
@@ -309,7 +310,7 @@ const data = {
 }
 
 
-function displayRecipes(recipe){
+function displayRecipes(recipe, query){
     let page = 1;
     let recipes = recipe.recipes;
     $('.container__top').empty();
@@ -339,12 +340,12 @@ function displayRecipes(recipe){
     $('.js__nextBtn').on('click', function(event){
         event.preventDefault();
         page++;
-        console.log(page);
+        searchRecipe(query, page);
         // This is where I need help to update page and to searchRecipe function
     });    
 }
 
-function callSearchAPI(url){
+function callSearchAPI(url, query){
    // Fecth data from API
    //    displayRecipes(data); // Calling function with test data
    fetch(url)
@@ -354,7 +355,7 @@ function callSearchAPI(url){
       }
       throw new Error(res.statusText);
    })
-   .then(recipe => displayRecipes(recipe))
+   .then(recipe => displayRecipes(recipe, query))
    .catch(err => {
       $('.js_error_message').text(`Something went wrong: ${err}`);
    });
@@ -377,7 +378,7 @@ function searchRecipe(query, page){
    console.log(url);
 
    // Search API with user input url formatted
-   callSearchAPI(url);
+   callSearchAPI(url, query);
 }
 
 function enableTopPage(){
