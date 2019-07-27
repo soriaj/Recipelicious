@@ -350,7 +350,7 @@ function displayRecipes(recipe){
 
 function callSearchAPI(url){
    // Fecth data from API
-//    displayRecipes(data); // Calling function with test data
+   //    displayRecipes(data); // Calling function with test data
    fetch(url)
    .then(res => {
       if(res.ok){
