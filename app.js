@@ -1,6 +1,7 @@
 'use strict'
 
 const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
+// const apiKey = '462b1cc8d4f2780081462fbc65136320';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
@@ -314,42 +315,47 @@ function handleNextPageDisplay(){
 }
 
 function displayRecipes(recipe){
-   let recipes = recipe.recipes;
-   $('.container__top').empty();
-   recipes.forEach((cur,i) => {
-      let title = cur.title;
-      if(title.length > 28){
-         title = `${title.substring(0, 28)}...`;
-      }
-      $('.container__top').append(
-         `<article class="recipes zoom">
-            <img src="${cur.image_url}" alt="${title}" class="img">
-            <div class="container__details">
-               <h4 class="recipe__title"><b>${title}</b></h4> 
-               <p>Publisher: ${cur.publisher}</p> 
-            </div>
-            <div class="recipe__button">
-               <a href="${cur.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
-            </div>    
-         </article>`)
-   });
-   $('.container__top').removeClass('hidden');
+    let page = 1;
+    let resPerPage = 10;
+    const start = (page  - 1) * resPerPage;
+    const end = page * resPerPage;
+    let recipes = recipe.recipes;
+    $('.container__top').empty();
+
+    recipes.slice(start, end).forEach((cur,i) => {
+        let title = cur.title;
+        if(title.length > 28){
+            title = `${title.substring(0, 28)}...`;
+        }
+        $('.container__top').append(
+            `<article class="recipes zoom">
+                <img src="${cur.image_url}" alt="${title}" class="img">
+                <div class="container__details">
+                    <h4 class="recipe__title"><b>${title}</b></h4> 
+                    <p>Publisher: ${cur.publisher}</p> 
+                </div>
+                <div class="recipe__button">
+                    <a href="${cur.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
+                </div>    
+            </article>`)
+    });
+    $('.container__top').removeClass('hidden');
 }
 
 function callSearchAPI(url){
    // Fecth data from API
-   fetch(url)
-   .then(res => {
-      if(res.ok){
-         return res.json();
-      }
-      throw new Error(res.statusText);
-   })
-   .then(recipe => displayRecipes(recipe))
-   .catch(err => {
-      $('.js_error_message').text(`Something went wrong: ${err}`);
-   });
-   // displayRecipes(data); // Calling function with test data
+   displayRecipes(data); // Calling function with test data
+//    fetch(url)
+//    .then(res => {
+//       if(res.ok){
+//          return res.json();
+//       }
+//       throw new Error(res.statusText);
+//    })
+//    .then(recipe => displayRecipes(recipe))
+//    .catch(err => {
+//       $('.js_error_message').text(`Something went wrong: ${err}`);
+//    });
 }
 
 function formatQueryParams(params){
@@ -362,11 +368,18 @@ function searchRecipe(query){
       q: query
    }
    
+   const page = 1;
    const queryString = formatQueryParams(params);
-   const url = `${searchURL}?key=${apiKey}&${queryString}`;
+   const url = `${searchURL}?key=${apiKey}&${queryString}&page=${page}`;
 
    // Search API with user input url formatted
    callSearchAPI(url);
+}
+
+function enableTopPage(){
+    $('.js__top').on('click', () => {
+        $(window).scrollTop(0);
+    });
 }
 
 function getSearchValue(){
@@ -394,6 +407,7 @@ function initialPageDisplay(){
 function init(){
    initialPageDisplay();
    getSearchValue();
+   enableTopPage();
 }
 
 $(init);

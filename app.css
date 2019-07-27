@@ -82,7 +82,6 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-bottom: 55px;
   margin-top: 25px;
   padding-bottom: 2.5rem;
 }
@@ -124,9 +123,29 @@ body {
   color: white;
   padding: .5em;
   text-decoration: none;
-}
+} 
 .js__view__btn:focus,
 .js__view__btn:hover {
+  background-color: FireBrick;
+  color: White;
+}
+.page__control {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;  
+}
+.btn {
+  background-color: Crimson;  
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+  width: 80px;
+  text-align: center;
+}
+.btn:hover {
   background-color: FireBrick;
   color: White;
 }
@@ -158,7 +177,13 @@ body {
     max-width: 1050px;
     margin-left: auto;
     margin-right: auto;
-}
+  }
+  .page__control {
+    max-width: 1050px;
+  }
+  .btn {
+    width: 10%;
+  }
   .footer {
     font-size: 15px;
   }
