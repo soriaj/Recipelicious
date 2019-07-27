@@ -308,19 +308,6 @@ const data = {
    ]
 }
 
-// // Function to handle when user clicks next page button to update page content
-// function nextPageDisplay(){
-//     // show next and prev page button
-//     $('.js__previousBtn').removeClass('hidden');
-//     $('.js__nextBtn').removeClass('hidden');
-//     // On click of next page button update page results
-//         // update page url to append page plus one
-//         //
-//     // show previous page results
-//         // update page url to append page minus 1
-//         // if page is <= 1 then page = 1
-//     // call fetch function
-// }
 
 function displayRecipes(recipe){
     let page = 1;
@@ -349,14 +336,13 @@ function displayRecipes(recipe){
     });
     $('.container__top').removeClass('hidden');
     // show next page
-    // nextPageDisplay();
     $('.js__previousBtn').removeClass('hidden');
     $('.js__nextBtn').removeClass('hidden');
 
     $('.js__nextBtn').on('click', function(event){
         event.preventDefault();
         page++;
-        return page;
+        // This is where I need help to update page and to searchRecipe function
     });
 
     
