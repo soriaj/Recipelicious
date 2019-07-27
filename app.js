@@ -353,12 +353,11 @@ function displayRecipes(recipe){
     $('.js__previousBtn').removeClass('hidden');
     $('.js__nextBtn').removeClass('hidden');
 
-    // $('.js__nextBtn').on('click', function(event){
-    //     event.preventDefault();
-    //     page++;
-    //     console.log(userSearch);
-    //     searchRecipe(userSearch, page);
-    // });
+    $('.js__nextBtn').on('click', function(event){
+        event.preventDefault();
+        page++;
+        return page;
+    });
 
     
 }
