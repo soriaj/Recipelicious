@@ -1,7 +1,6 @@
 'use strict'
 
 const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
-// const apiKey = '462b1cc8d4f2780081462fbc65136320';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
@@ -309,10 +308,19 @@ const data = {
    ]
 }
 
-// Function to handle when user clicks next page button to update page content
-function handleNextPageDisplay(){
-
-}
+// // Function to handle when user clicks next page button to update page content
+// function nextPageDisplay(){
+//     // show next and prev page button
+//     $('.js__previousBtn').removeClass('hidden');
+//     $('.js__nextBtn').removeClass('hidden');
+//     // On click of next page button update page results
+//         // update page url to append page plus one
+//         //
+//     // show previous page results
+//         // update page url to append page minus 1
+//         // if page is <= 1 then page = 1
+//     // call fetch function
+// }
 
 function displayRecipes(recipe){
     let page = 1;
@@ -340,22 +348,35 @@ function displayRecipes(recipe){
             </article>`)
     });
     $('.container__top').removeClass('hidden');
+    // show next page
+    // nextPageDisplay();
+    $('.js__previousBtn').removeClass('hidden');
+    $('.js__nextBtn').removeClass('hidden');
+
+    // $('.js__nextBtn').on('click', function(event){
+    //     event.preventDefault();
+    //     page++;
+    //     console.log(userSearch);
+    //     searchRecipe(userSearch, page);
+    // });
+
+    
 }
 
 function callSearchAPI(url){
    // Fecth data from API
-   displayRecipes(data); // Calling function with test data
-//    fetch(url)
-//    .then(res => {
-//       if(res.ok){
-//          return res.json();
-//       }
-//       throw new Error(res.statusText);
-//    })
-//    .then(recipe => displayRecipes(recipe))
-//    .catch(err => {
-//       $('.js_error_message').text(`Something went wrong: ${err}`);
-//    });
+//    displayRecipes(data); // Calling function with test data
+   fetch(url)
+   .then(res => {
+      if(res.ok){
+         return res.json();
+      }
+      throw new Error(res.statusText);
+   })
+   .then(recipe => displayRecipes(recipe))
+   .catch(err => {
+      $('.js_error_message').text(`Something went wrong: ${err}`);
+   });
 }
 
 function formatQueryParams(params){
@@ -363,14 +384,15 @@ function formatQueryParams(params){
    return queryItems.join('&');
 }
 
-function searchRecipe(query){
+function searchRecipe(query, page){
    const params = {
-      q: query
+      q: query,
+      page: page
    }
-   
-   const page = 1;
+
    const queryString = formatQueryParams(params);
-   const url = `${searchURL}?key=${apiKey}&${queryString}&page=${page}`;
+   const url = `${searchURL}?key=${apiKey}&${queryString}`;
+   console.log(url);
 
    // Search API with user input url formatted
    callSearchAPI(url);
@@ -390,7 +412,7 @@ function getSearchValue(){
       const userSearch = $('.search__recipes').val();
 
       // Pass search item to searchAPI
-      searchRecipe(userSearch.toLowerCase());
+      searchRecipe(userSearch.toLowerCase(), 1);
 
       // Clear search field
       $('.search__recipes').val('');
