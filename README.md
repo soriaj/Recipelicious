@@ -1,0 +1,32 @@
+# Recipelicious
+
+Recipelicious is a webapp for finding delicious recipes. You can search for over 1,000,000 delicious recipes. 
+
+## Motivation
+
+I wanted to create an app that would search top ranked receipes leveraging Food2Fork's API.
+
+## Screenshot
+
+Desktop/Laptop: 
+
+![landing screen](https://lh3.googleusercontent.com/TlbDjL2gPZdvriIBOK8_OuoeFFaCdb4DPuaur_uHmZG-3C_wwV7E2nYBhJMVjkWgkANwRFdg7IpP050LUdwoxF-nIVRtpmDMmaHx9d8sTnlwsdhpVU0figUPe7nFt41TjRh57QgFWRSij-UyRLfgIGIJDswPD-IiXhwNJoydYDXbMslHZ0gSamABAtGez2xzVzAZMzJoBW-8eKiKqeYdD19TqhZeSzF7sO25_4QC2lueOm2FV29eXZXTZ0dbPGJXaRDTTJ8NHPx0SmHoLxlPcrCOLTGmTalBp-_zZTsnViTXX-9GwCIpRnmD4DB2f6JnXWxlWnU0U68OYo1wZYUT2aGXKJXinADRgdTFhRLsXA7NyGep5xA820uspEIeqYw6LhyJ6IxKrS4fZgEBPwwVt2XhPFiTfyBOxmfvk0rdUxSZhVZiaR3R_ZjUN1F6NGAUbOEjXqtRmoSe4LvVhuSHWjZSBo2iPHD6kpFzlJc89EMFWTHi6qQDxisKcJdLZSyxl7SzmL7K87N1ZqJiB3u-R7eeuSmDI6bOT0rJV5TTu4J4wJJtZlhKQ1mtVoR8LpGrzTqKSAIK_XKz7awT-CBpt44Wt8FydwoNT6tsTknDC7BjbrPmQGcpZic8a3jhwghJpUCSiRh1EQJYArG-ppCslR6cy-yLTJxf5aHOfa37hBm4nueR4QAJG5k6P_ZN7ktEYJPPfm-lTK6-RSqMYrabx6mh=w2005-h1480-no)
+
+Mobile:
+
+![landing screen](https://lh3.googleusercontent.com/-rIsEab-KLakCSMpRdokBrJgxlRgXuqgP6Ah9IL4RjF8oUkJO6oTwuVGp512KdyEZRi0QOF6XfBRW03WciseGvVbrQq1pCO2264vvsHyISSe2IfxzSSg3I0bdrBKmfXwHmjX5hIWEsSDLBwaPVqCKXx0LWRibhWe-RxXsHZzFPV-CAxPE1qG4nXD30FcOOBLaPbrFKVDo_4yzaSGubXULoa26BGC9One9-F_GUtN9A6FwAKCpIkoEHZXVwAJBVZD-c259tjb5KoDxSZK2t2XwAXxlBtslfUHZ0jtnnZijk3qKG2TQehZVnNcYeXe5RpPTs5OlLnQy01oIwpIStblJ-ZYPmVKWWdLI8Kg6-vuXmvvO3xdDZFrZElSSM1hDW8mFSjAbNUQ3wPOB7rW141LhyonCbWJ2nsbCc-5ztC5v0uJrczmnAn5Go4ivB5Kyt_48L6urxgx0D2XxtFf6UUT_00kuOIHsAtRWlKYd9XI4_qBqK1HsVJ0ZuTOD2CUWDH2uNmvqClGfzfUQ-H7dUd_acgoWdl1AGh6VUNubGrUhU_F3xg2V23qovdv-UM-G9gO4_TsaUSyQYKseH9HP6KxGP6MWl9ay5jNruHblQ2HgfdAraNk3X1vsRbXVNbttSs67x8Zk0_D-jQRNRNBcCvGfa3Je26OgW0jmBfybKe9z3J5YyESAXB5qyJTbUDP3s7fqHjM9JXDYnMXLahOrOarQ5QN=w561-h1426-no)
+
+## Built With
+
+* HTML5
+* CSS
+* Javascript
+* JQuery
+
+## Live App
+
+- [Recipelicious App](https://soriaj.github.io/recipelicious)
+
+## Author
+
+* **Javier Soria**
