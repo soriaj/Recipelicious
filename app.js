@@ -155,7 +155,7 @@ function displayRecipes(data){
             title = `${title.substring(0, 28)}...`;
         }
         $('.container__top').append(
-            `<article class="recipes zoom">
+            `<article class="recipes">
                 <img src="${cur.image_url}" alt="${title}" class="img">
                 <div class="container__details">
                     <h2 class="recipe__title"><b>${title}</b></h2> 
