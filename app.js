@@ -1,12 +1,18 @@
 'use strict'
 
+// API Key and API Endpoint
 // const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
-const apiKey = 'd270f61c8c9fe2ef89633f4b609966de';
+const apiKey = 'f0e79516a7031030448c2c01dd68c95c';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
+// Page and User Query Defaults
+let page = 1;
+let queryString = '';
+
+// Initial Page Display data
 const data = {
-   "count": 30,
+   "count": 10,
    "recipes": [
        {
            "publisher": "Closet Cooking",
@@ -99,204 +105,6 @@ const data = {
            "publisher_url": "http://www.cookincanuck.com"
        },
        {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46982",
-           "title": "Broccoli Cheese Soup",
-           "source_url": "http://thepioneerwoman.com/cooking/2011/11/broccoli-cheese-soup/",
-           "recipe_id": "46982",
-           "image_url": "http://static.food2fork.com/broccolicf92.jpg",
-           "social_rank": 99.99999999999993,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/47070",
-           "title": "Chicken and Dumplings",
-           "source_url": "http://thepioneerwoman.com/cooking/2010/12/chicken-and-dumplings/",
-           "recipe_id": "47070",
-           "image_url": "http://static.food2fork.com/5258969545_eeb0c35356_o7eee.jpg",
-           "social_rank": 99.99999999999993,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "All Recipes",
-           "f2f_url": "http://food2fork.com/view/28924",
-           "title": "Slow Cooker Chicken Taco Soup",
-           "source_url": "http://allrecipes.com/Recipe/Slow-Cooker-Chicken-Taco-Soup/Detail.aspx",
-           "recipe_id": "28924",
-           "image_url": "http://static.food2fork.com/9843414ab7.jpg",
-           "social_rank": 99.99999999999945,
-           "publisher_url": "http://allrecipes.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46947",
-           "title": "Chicken with Mustard Cream Sauce",
-           "source_url": "http://thepioneerwoman.com/cooking/2012/02/chicken-with-mustard-cream-sauce/",
-           "recipe_id": "46947",
-           "image_url": "http://static.food2fork.com/chickenmustarde587.jpg",
-           "social_rank": 99.99999999999929,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "All Recipes",
-           "f2f_url": "http://food2fork.com/view/34810",
-           "title": "Yummy Honey Chicken Kabobs",
-           "source_url": "http://allrecipes.com/Recipe/Yummy-Honey-Chicken-Kabobs/Detail.aspx",
-           "recipe_id": "34810",
-           "image_url": "http://static.food2fork.com/1184378c8a.jpg",
-           "social_rank": 99.9999999999988,
-           "publisher_url": "http://allrecipes.com"
-       },
-       {
-           "publisher": "All Recipes",
-           "f2f_url": "http://food2fork.com/view/4500",
-           "title": "Braised Balsamic Chicken",
-           "source_url": "http://allrecipes.com/Recipe/Braised-Balsamic-Chicken/Detail.aspx",
-           "recipe_id": "4500",
-           "image_url": "http://static.food2fork.com/532125a2ff.jpg",
-           "social_rank": 99.99999999999856,
-           "publisher_url": "http://allrecipes.com"
-       },
-       {
-           "publisher": "All Recipes",
-           "f2f_url": "http://food2fork.com/view/2495",
-           "title": "Baked Honey Mustard Chicken",
-           "source_url": "http://allrecipes.com/Recipe/Baked-Honey-Mustard-Chicken/Detail.aspx",
-           "recipe_id": "2495",
-           "image_url": "http://static.food2fork.com/2334b48b.jpg",
-           "social_rank": 99.99999999999491,
-           "publisher_url": "http://allrecipes.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/47264",
-           "title": "Ranch Style Chicken",
-           "source_url": "http://thepioneerwoman.com/cooking/2009/01/ranch-style-chicken/",
-           "recipe_id": "47264",
-           "image_url": "http://static.food2fork.com/3214830317_3470607769fad0.jpg",
-           "social_rank": 99.99999999999457,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/47167",
-           "title": "Homemade Chicken and Noodles",
-           "source_url": "http://thepioneerwoman.com/cooking/2010/01/homemade-chicken-and-noodles/",
-           "recipe_id": "47167",
-           "image_url": "http://static.food2fork.com/4302390134_8a04478597_oc153.jpg",
-           "social_rank": 99.99999999999358,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "Closet Cooking",
-           "f2f_url": "http://food2fork.com/view/35168",
-           "title": "Buffalo Chicken Chili",
-           "source_url": "http://www.closetcooking.com/2012/04/buffalo-chicken-chili.html",
-           "recipe_id": "35168",
-           "image_url": "http://static.food2fork.com/Buffalo2BChicken2BChili2B5002B9548b7d71737.jpg",
-           "social_rank": 99.99999999999191,
-           "publisher_url": "http://closetcooking.com"
-       },
-       {
-           "publisher": "What's Gaby Cooking",
-           "f2f_url": "http://food2fork.com/view/9eb23b",
-           "title": "Cheddar Jalapeno Chicken Burgers with Guacamole",
-           "source_url": "http://whatsgabycooking.com/cheddar-jalapeno-chicken-burgers-with-guacamole/",
-           "recipe_id": "9eb23b",
-           "image_url": "http://static.food2fork.com/CheddarJalapenoChickenBurgerswithGuacamole4fdb.jpg",
-           "social_rank": 99.99999999998766,
-           "publisher_url": "http://whatsgabycooking.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46933",
-           "title": "Chicken Florentine Pasta",
-           "source_url": "http://thepioneerwoman.com/cooking/2012/04/chicken-florentine-pasta/",
-           "recipe_id": "46933",
-           "image_url": "http://static.food2fork.com/florentineebc6.jpg",
-           "social_rank": 99.9999999999312,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46882",
-           "title": "Bowtie Chicken Alfredo",
-           "source_url": "http://thepioneerwoman.com/cooking/2012/12/bowtie-chicken-alfredo/",
-           "recipe_id": "46882",
-           "image_url": "http://static.food2fork.com/chickenalfredoc9c5.jpg",
-           "social_rank": 99.99999999993057,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46980",
-           "title": "Pork Roast with Apples and Onions",
-           "source_url": "http://thepioneerwoman.com/cooking/2011/11/pork-roast-with-apples-and-onions/",
-           "recipe_id": "46980",
-           "image_url": "http://static.food2fork.com/porkroastapplese1e2.jpg",
-           "social_rank": 99.99999999991239,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "Jamie Oliver",
-           "f2f_url": "http://food2fork.com/view/aad814",
-           "title": "Perfect roast chicken",
-           "source_url": "http://www.jamieoliver.com/recipes/chicken-recipes/perfect-roast-chicken",
-           "recipe_id": "aad814",
-           "image_url": "http://static.food2fork.com/390_1_1350903747_lrg0b42.jpg",
-           "social_rank": 99.999999999897,
-           "publisher_url": "http://www.jamieoliver.com"
-       },
-       {
-           "publisher": "Closet Cooking",
-           "f2f_url": "http://food2fork.com/view/35629",
-           "title": "Tequila Lime Grilled Chicken Club Sandwich with Guacamole and Roasted Jalapeno Mayo", "source_url": "http: //www.closetcooking.com/2012/05/tequila-lime-grilled-chicken-club.html", "recipe_id": "35629",
-           "image_url": "http://static.food2fork.com/Tequila2BLime2BGrilled2BChicken2BClub2BSandwich2Bwith2BGuacamole2Band2BRoasted2BJalapeno2BMayo2B5002B0617b8b60d15.jpg",
-           "social_rank": 99.9999999997356,
-           "publisher_url": "http://closetcooking.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46979",
-           "title": "Pumpkin Soup",
-           "source_url": "http://thepioneerwoman.com/cooking/2011/11/pumpkin-soup/",
-           "recipe_id": "46979",
-           "image_url": "http://static.food2fork.com/punkin3f44.jpg",
-           "social_rank": 99.99999999972584,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "Simply Recipes",
-           "f2f_url": "http://food2fork.com/view/36043",
-           "title": "Classic Baked Chicken",
-           "source_url": "http://www.simplyrecipes.com/recipes/classic_baked_chicken/",
-           "recipe_id": "36043",
-           "image_url": "http://static.food2fork.com/bakedchickenc300x2002b69c2e8.jpg",
-           "social_rank": 99.99999999969124,
-           "publisher_url": "http://simplyrecipes.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/2fdcab",
-           "title": "Pastor Ryan’s Chicken Tikka Masala",
-           "source_url": "http://thepioneerwoman.com/cooking/2009/06/chicken-tikka-masala-by-pastor-ryan/",
-           "recipe_id": "2fdcab",
-           "image_url": "http://static.food2fork.com/chickentikkamasalac65c.jpg",
-           "social_rank": 99.99999999945585,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "Picky Palate",
-           "f2f_url": "http://food2fork.com/view/484d98",
-           "title": "Crock Pot Pesto Ranch Chicken Thighs",
-           "source_url": "http://picky-palate.com/2012/09/20/pesto-ranch-crock-pot-chicken-thighs/",
-           "recipe_id": "484d98",
-           "image_url": "http://static.food2fork.com/CrockPotPestoRanchChickenThighs1text1300x248ca0b.jpg",
-           "social_rank": 99.99999999941502,
-           "publisher_url": "http://picky-palate.com"
-       },
-       {
            "publisher": "All Recipes",
            "f2f_url": "http://food2fork.com/view/26851",
            "title": "Roast Sticky Chicken Rotisserie Style",
@@ -305,17 +113,44 @@ const data = {
            "image_url": "http://static.food2fork.com/464580296.jpg",
            "social_rank": 99.99999999899647,
            "publisher_url": "http://allrecipes.com"
-       }
+       }       
    ]
 }
 
 
-function displayRecipes(recipe, query){
-    let page = 1;
-    let recipes = recipe.recipes;
+// Next page event listener
+function updateNextPageOnClick(){
+   $('.js__nextBtn').on('click', e => {
+      e.preventDefault();
+      page += 1;
+      if(page > 1) {
+         $('.js__previousBtn').removeClass('hidden');
+      }
+      callSearchAPI();
+   });
+}
+
+// Previous page event listener
+function updatePreviousPageOnClick(){
+   $('.js__previousBtn').on('click', e => {
+      e.preventDefault();
+      page -= 1;
+      if(page <= 1) {
+         page = 1;
+         $('.js__previousBtn').addClass('hidden');
+      }
+      callSearchAPI();                                              
+   }); 
+}
+
+// Display results to the page
+function displayRecipes(data){
+   let recipes = data.recipes;
+   // Remove previous items from screen
     $('.container__top').empty();
 
-    recipes.forEach((cur,i) => {
+    // Iterate through recipe array data
+    recipes.forEach(cur => {
         let title = cur.title;
         if(title.length > 28){
             title = `${title.substring(0, 28)}...`;
@@ -324,7 +159,7 @@ function displayRecipes(recipe, query){
             `<article class="recipes zoom">
                 <img src="${cur.image_url}" alt="${title}" class="img">
                 <div class="container__details">
-                    <h4 class="recipe__title"><b>${title}</b></h4> 
+                    <h2 class="recipe__title"><b>${title}</b></h2> 
                     <p>Publisher: ${cur.publisher}</p> 
                 </div>
                 <div class="recipe__button">
@@ -333,21 +168,11 @@ function displayRecipes(recipe, query){
             </article>`)
     });
     $('.container__top').removeClass('hidden');
-    // show next page
-    $('.js__previousBtn').removeClass('hidden');
-    $('.js__nextBtn').removeClass('hidden');
-
-    $('.js__nextBtn').on('click', function(event){
-        event.preventDefault();
-        page++;
-        searchRecipe(query, page);
-        // This is where I need help to update page and to searchRecipe function
-    });    
 }
 
-function callSearchAPI(url, query){
-   // Fecth data from API
-   //    displayRecipes(data); // Calling function with test data
+// Fetch data from API endpoint using updated URL
+function callSearchAPI(url){
+   url = `${searchURL}?key=${apiKey}&count=10&${queryString}&page=${page}`;
    fetch(url)
    .then(res => {
       if(res.ok){
@@ -355,7 +180,7 @@ function callSearchAPI(url, query){
       }
       throw new Error(res.statusText);
    })
-   .then(recipe => displayRecipes(recipe, query))
+   .then(recipe => displayRecipes(recipe))
    .catch(err => {
       $('.js_error_message').text(`Something went wrong: ${err}`);
    });
@@ -366,52 +191,39 @@ function formatQueryParams(params){
    return queryItems.join('&');
 }
 
-function searchRecipe(query, page){
-   const params = {
-      q: query,
-      page: page
-   }
-
-   const queryString = formatQueryParams(params);
-   console.log(queryString);
-   const url = `${searchURL}?key=${apiKey}&count=10&${queryString}`;
-   console.log(url);
-
-   // Search API with user input url formatted
-   callSearchAPI(url, query);
-}
-
-function enableTopPage(){
-    $('.js__top').on('click', () => {
-        $(window).scrollTop(0);
-    });
-}
 
 function getSearchValue(){
+   // Present local data on page load
+   displayRecipes(data);
    $('form').submit(e => {
       e.preventDefault();
-
-      // Get users search item
+      page = 1;
+      // Remove any previous items displayed
+      $('.container__top').empty();
+      // Get users search input
       const userSearch = $('.search__recipes').val();
-
-      // Pass search item to searchAPI
-      searchRecipe(userSearch.toLowerCase(), 1);
-
+      // Pass user input into an object
+      let query = { q: userSearch }
+      // Format user input into HTML encoded component
+      queryString = formatQueryParams(query);
+      // Display next button on search
+      $('.js__nextBtn').removeClass('hidden');
+      callSearchAPI();
       // Clear search field
       $('.search__recipes').val('');
    });
 }
 
-function initialPageDisplay(){
-   const defaultURL = `${searchURL}?key=${apiKey}&count=10&q=chicken&page=1`;
-
-   // Call API using default search item
-   callSearchAPI(defaultURL);
+function enableTopPage(){
+   $('.js__top').on('click', () => {
+       $(window).scrollTop(0);
+   });
 }
 
 function init(){
-   initialPageDisplay();
    getSearchValue();
+   updateNextPageOnClick();
+   updatePreviousPageOnClick();
    enableTopPage();
 }
 
