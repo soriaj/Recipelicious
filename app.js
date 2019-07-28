@@ -1,8 +1,7 @@
 'use strict'
 
 // API Key and API Endpoint
-// const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
-const apiKey = 'f0e79516a7031030448c2c01dd68c95c';
+const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
