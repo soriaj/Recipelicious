@@ -116,7 +116,71 @@ const data = {
    ]
 }
 
+const detailData = {
+    "recipe": {
+        "publisher": "Closet Cooking",
+        "f2f_url": "http://food2fork.com/view/35120",
+        "ingredients": [
+            "4 small chicken breasts, pounded thin",
+            "salt and pepper to taste",
+            "4 jalapenos, diced",
+            "4 ounces cream cheese, room temperature",
+            "1 cup cheddar cheese, shredded",
+            "8 slices bacon\n"
+        ],
+        "source_url": "http://www.closetcooking.com/2012/11/bacon-wrapped-jalapeno-popper-stuffed.html",
+        "recipe_id": "35120",
+        "image_url": "http://static.food2fork.com/Bacon2BWrapped2BJalapeno2BPopper2BStuffed2BChicken2B5002B5909939b0e65.jpg",
+        "social_rank": 100.0,
+        "publisher_url": "http://closetcooking.com",
+        "title": "Bacon Wrapped Jalapeno Popper Stuffed Chicken"
+    }
+}
 
+function ingredient(){
+    const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
+    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lb', 'lb'];
+    
+    const ingredients = detailData.recipe.ingredients;
+    // 1. Uniform Unit
+    ingredients.map(cur => {
+       let ingredient = cur.toLowerCase();
+       unitsLong.forEach((unit, i) => {
+          ingredient = ingredient.replace(unit, unitsShort[i]);
+       });
+    
+    // 2. Remove parentheses
+    ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');   
+ 
+    // 3. Parse ingredients into count, unit and ingredient
+    const arrIng = ingredient.split(' ');
+    console.log(arrIng);
+    const unitIndex = arrIng.findIndex(el => unitsShort.includes(el));
+    
+    let objIng;
+    if(unitIndex > -1){
+       // There is a unit
+       const arrCount = arrIng.slice(0, unitIndex);
+    } else if (parseInt(arrIng[0], 10)){
+       // There is no unit, but 1st element is a number
+       objIng = {
+          count: parseInt(arrIng[0], 10),
+          unit: '',
+          ingredient: arrIng.slice(1).join(' ')
+       }
+    } else if (unitIndex === -1){
+       // There is no unit and no number in 1st position
+       objIng = {
+          count: 1,
+          unit: '',
+          ingredient
+       }
+    }
+    console.log(objIng);
+    
+    });
+}
+ 
 // Next page event listener
 function updateNextPageOnClick(){
    $('.js__nextBtn').on('click', e => {
@@ -126,6 +190,7 @@ function updateNextPageOnClick(){
          $('.js__previousBtn').removeClass('hidden');
       }
       callSearchAPI();
+    //   callGetAPI();
    });
 }
 
@@ -138,13 +203,18 @@ function updatePreviousPageOnClick(){
          page = 1;
          $('.js__previousBtn').addClass('hidden');
       }
-      callSearchAPI();                                              
+      callSearchAPI();
+    //   callGetAPI();                                             
    }); 
 }
 
 // Display results to the page
-function displayRecipes(data){
+function displayRecipes(data, detailData){
    let recipes = data.recipes;
+   let recipeIds = recipes.forEach(id => console.log(id.recipe_id));
+
+
+//    recipes.forEach(cur => console.log(`The recipe ${cur.title} is ${cur.recipe_id}`));
    // Remove previous items from screen
     $('.container__top').empty();
 
@@ -152,37 +222,48 @@ function displayRecipes(data){
     recipes.forEach(cur => {
         let title = cur.title;
         if(title.length > 28){
-            title = `${title.substring(0, 28)}...`;
+            title = `${title.substring(0, 30)}...`;
         }
         $('.container__top').append(
-            `<article class="recipes">
-                <img src="${cur.image_url}" alt="${title}" class="img">
-                <div class="container__details">
-                    <h2 class="recipe__title"><b>${title}</b></h2> 
-                    <p>Publisher: ${cur.publisher}</p> 
+            `<div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="${cur.image_url}" alt="${title}" class="js__flip__img">
+                        <div class="centered js__title">${title}</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>Ingredients</h1> 
+                        <p>ingredient 1</p> 
+                        <p>ingredient 2</p>
+                        <p>ingredient 2</p>
+                        <p>ingredient 2</p>
+                        <p>ingredient 2</p>
+                        <div class="recipe__button">
+                            <a href="${cur.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
+                        </div>  
+                    </div>
                 </div>
-                <div class="recipe__button">
-                    <a href="${cur.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
-                </div>    
-            </article>`)
+          </div>`)
     });
     $('.container__top').removeClass('hidden');
 }
 
 // Fetch data from API endpoint using updated URL
-function callSearchAPI(url){
-   url = `${searchURL}?key=${apiKey}&count=10&${queryString}&page=${page}`;
-   fetch(url)
-   .then(res => {
-      if(res.ok){
-         return res.json();
-      }
-      throw new Error(res.statusText);
-   })
-   .then(recipe => displayRecipes(recipe))
-   .catch(err => {
-      $('.js_error_message').text(`Something went wrong: ${err}`);
-   });
+function callSearchAPI(){
+    displayRecipes(data);
+    console.log(data)
+//     url = `${searchURL}?key=${apiKey}&count=10&${queryString}&page=${page}`;
+//    fetch(url)
+//    .then(res => {
+//       if(res.ok){
+//          return res.json();
+//       }
+//       throw new Error(res.statusText);
+//    })
+//    .then(recipe => displayRecipes(recipe))
+//    .catch(err => {
+//       $('.js_error_message').text(`Something went wrong: ${err}`);
+//    });
 }
 
 function formatQueryParams(params){
@@ -224,6 +305,7 @@ function init(){
    updateNextPageOnClick();
    updatePreviousPageOnClick();
    enableTopPage();
+   ingredient();
 }
 
 $(init);
