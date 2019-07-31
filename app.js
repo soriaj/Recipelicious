@@ -1,119 +1,120 @@
 'use strict'
 
 // API Key and API Endpoint
-const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
+const apiKey = 'f0e79516a7031030448c2c01dd68c95c';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
 // Page and User Query Defaults
 let page = 1;
 let queryString = '';
+// let ids = [];
 
 // Initial Page Display data
 const data = {
-   "count": 10,
-   "recipes": [
-       {
-           "publisher": "Closet Cooking",
-           "f2f_url": "http://food2fork.com/view/35120",
-           "title": "Bacon Wrapped Jalapeno Popper Stuffed Chicken", "source_url":
-"http://www.closetcooking.com/2012/11/bacon-wrapped-jalapeno-popper-stuffed.html",
-           "recipe_id": "35120",
-           "image_url": "http://static.food2fork.com/Bacon2BWrapped2BJalapeno2BPopper2BStuffed2BChicken2B5002B5909939b0e65.jpg",
-           "social_rank": 100.0,
-           "publisher_url": "http://closetcooking.com"
-       },
-       {
-           "publisher": "Closet Cooking",
-           "f2f_url": "http://food2fork.com/view/35169",
-           "title": "Buffalo Chicken Chowder",
-           "source_url": "http://www.closetcooking.com/2011/11/buffalo-chicken-chowder.html",
-           "recipe_id": "35169",
-           "image_url": "http://static.food2fork.com/Buffalo2BChicken2BChowder2B5002B0075c131caa8.jpg",
-           "social_rank": 100.0,
-           "publisher_url": "http://closetcooking.com"
-       },
-       {
-           "publisher": "All Recipes",
-           "f2f_url": "http://food2fork.com/view/34889",
-           "title": "Zesty Slow Cooker Chicken Barbeque", "source_url":
-"http://allrecipes.com/Recipe/Zesty-Slow-Cooker-Chicken-Barbecue/Detail.aspx",
-           "recipe_id": "34889",
-           "image_url": "http://static.food2fork.com/4515542dbb.jpg",
-           "social_rank": 100.0,
-           "publisher_url": "http://allrecipes.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46906",
-           "title": "Roast Chicken",
-           "source_url": "http://thepioneerwoman.com/cooking/2012/08/roast-chicken/",
-           "recipe_id": "46906",
-           "image_url": "http://static.food2fork.com/roastchicken2feab.jpg",
-           "social_rank": 100.0,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/46996",
-           "title": "Cajun Chicken Pasta",
-           "source_url": "http://thepioneerwoman.com/cooking/2011/09/cajun-chicken-pasta/",
-           "recipe_id": "46996",
-           "image_url": "http://static.food2fork.com/cajun0676.jpg",
-           "social_rank": 100.0,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/47194",
-           "title": "Chicken Parmigiana",
-           "source_url": "http://thepioneerwoman.com/cooking/2009/10/chicken-parmigiana/",
-           "recipe_id": "47194",
-           "image_url": "http://static.food2fork.com/4024225151_5f477f16caabf9.jpg",
-           "social_rank": 100.0,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "Healthy Delicious",
-           "f2f_url": "http://food2fork.com/view/0c2e90",
-           "title": "Baked Chicken and Spinach Flautas",
-           "source_url": "http://www.healthy-delicious.com/2012/03/baked-chicken-and-spinach-flautas/",
-           "recipe_id": "0c2e90",
-           "image_url": "http://static.food2fork.com/205xNxchickenandspinachflautas2296f.jpg.pagespeed.ic.RNEW9wsRU.jpg",
-           "social_rank": 100.0,
-           "publisher_url": "http://www.healthy-delicious.com"
-       },
-       {
-           "publisher": "The Pioneer Woman",
-           "f2f_url": "http://food2fork.com/view/47064",
-           "title": "Chicken Tortilla Soup",
-           "source_url": "http://thepioneerwoman.com/cooking/2011/01/chicken-tortilla-soup/",
-           "recipe_id": "47064",
-           "image_url": "http://static.food2fork.com/5337400468_d5892f3a03_od5cd.jpg",
-           "social_rank": 99.99999999999994,
-           "publisher_url": "http://thepioneerwoman.com"
-       },
-       {
-           "publisher": "Cookin Canuck",
-           "f2f_url": "http://food2fork.com/view/ed141a",
-           "title": "Home",
-           "source_url": "http://www.cookincanuck.com/2011/11/hearty-chicken-stew-with-butternut-squash-quinoa-recipe/",
-           "recipe_id": "ed141a",
-           "image_url": "http://static.food2fork.com/ButternutQuinoaStewSquareSmallbe3b.jpg",
-           "social_rank": 99.99999999999201,
-           "publisher_url": "http://www.cookincanuck.com"
-       },
-       {
-           "publisher": "All Recipes",
-           "f2f_url": "http://food2fork.com/view/26851",
-           "title": "Roast Sticky Chicken Rotisserie Style",
-           "source_url": "http://allrecipes.com/Recipe/Roast-Sticky-Chicken-Rotisserie-Style/Detail.aspx",
-           "recipe_id": "26851",
-           "image_url": "http://static.food2fork.com/464580296.jpg",
-           "social_rank": 99.99999999899647,
-           "publisher_url": "http://allrecipes.com"
-       }       
-   ]
+    "count": 10,
+    "recipes": [
+        {
+            "publisher": "Closet Cooking",
+            "f2f_url": "http://food2fork.com/view/35382",
+            "title": "Jalapeno Popper Grilled Cheese Sandwich",
+            "source_url": "http://www.closetcooking.com/2011/04/jalapeno-popper-grilled-cheese-sandwich.html",
+            "recipe_id": "35382",
+            "image_url": "http://static.food2fork.com/Jalapeno2BPopper2BGrilled2BCheese2BSandwich2B12B500fd186186.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://closetcooking.com"
+        },
+        {
+            "publisher": "The Pioneer Woman",
+            "f2f_url": "http://food2fork.com/view/47024",
+            "title": "Perfect Iced Coffee",
+            "source_url": "http://thepioneerwoman.com/cooking/2011/06/perfect-iced-coffee/",
+            "recipe_id": "47024",
+            "image_url": "http://static.food2fork.com/icedcoffee5766.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://thepioneerwoman.com"
+        },
+        {
+            "publisher": "The Pioneer Woman",
+            "f2f_url": "http://food2fork.com/view/47319",
+            "title": "Crash Hot Potatoes",
+            "source_url": "http://thepioneerwoman.com/cooking/2008/06/crash-hot-potatoes/",
+            "recipe_id": "47319",
+            "image_url": "http://static.food2fork.com/CrashHotPotatoes5736.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://thepioneerwoman.com"
+        },
+        {
+            "publisher": "Two Peas and Their Pod",
+            "f2f_url": "http://food2fork.com/view/54384",
+            "title": "Stovetop Avocado Mac and Cheese",
+            "source_url": "http://www.twopeasandtheirpod.com/stovetop-avocado-mac-and-cheese/",
+            "recipe_id": "54384",
+            "image_url": "http://static.food2fork.com/avocadomacandcheesedc99.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://www.twopeasandtheirpod.com"
+        },
+        {
+            "publisher": "Closet Cooking",
+            "f2f_url": "http://food2fork.com/view/35171",
+            "title": "Buffalo Chicken Grilled Cheese Sandwich",
+            "source_url": "http://www.closetcooking.com/2011/08/buffalo-chicken-grilled-cheese-sandwich.html",
+            "recipe_id": "35171",
+            "image_url": "http://static.food2fork.com/Buffalo2BChicken2BGrilled2BCheese2BSandwich2B5002B4983f2702fe4.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://closetcooking.com"
+        },
+        {
+            "publisher": "The Pioneer Woman",
+            "f2f_url": "http://food2fork.com/view/d9a5e8",
+            "title": "Cinnamon Rolls",
+            "source_url": "http://thepioneerwoman.com/cooking/2007/06/cinammon_rolls_/",
+            "recipe_id": "d9a5e8",
+            "image_url": "http://static.food2fork.com/333323997_04bd8d6c53da11.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://thepioneerwoman.com"
+        },
+        {
+            "publisher": "101 Cookbooks",
+            "f2f_url": "http://food2fork.com/view/47746",
+            "title": "Best Pizza Dough Ever",
+            "source_url": "http://www.101cookbooks.com/archives/001199.html",
+            "recipe_id": "47746",
+            "image_url": "http://static.food2fork.com/best_pizza_dough_recipe1b20.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://www.101cookbooks.com"
+        },
+        {
+            "publisher": "101 Cookbooks",
+            "f2f_url": "http://food2fork.com/view/47899",
+            "title": "Magic Sauce",
+            "source_url": "http://www.101cookbooks.com/archives/magic-sauce-recipe.html",
+            "recipe_id": "47899",
+            "image_url": "http://static.food2fork.com/magic_sauce_recipeece9.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://www.101cookbooks.com"
+        },
+        {
+            "publisher": "The Pioneer Woman",
+            "f2f_url": "http://food2fork.com/view/47042",
+            "title": "Spicy Dr. Pepper Shredded Pork",
+            "source_url": "http://thepioneerwoman.com/cooking/2011/03/spicy-dr-pepper-shredded-pork/",
+            "recipe_id": "47042",
+            "image_url": "http://static.food2fork.com/5551711173_dc42f7fc4b_zbd8a.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://thepioneerwoman.com"
+        },
+        {
+            "publisher": "Whats Gaby Cooking",
+            "f2f_url": "http://food2fork.com/view/713134",
+            "title": "Parmesan Roasted Potatoes",
+            "source_url": "http://whatsgabycooking.com/parmesan-roasted-potatoes/",
+            "recipe_id": "713134",
+            "image_url": "http://static.food2fork.com/ParmesanRoastedPotatoes11985a.jpg",
+            "social_rank": 100.0,
+            "publisher_url": "http://whatsgabycooking.com"
+        }
+    ]
 }
 
 const detailData = {
@@ -137,49 +138,93 @@ const detailData = {
     }
 }
 
-function ingredient(){
-    const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
-    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lb', 'lb'];
-    
-    const ingredients = detailData.recipe.ingredients;
-    // 1. Uniform Unit
-    ingredients.map(cur => {
-       let ingredient = cur.toLowerCase();
-       unitsLong.forEach((unit, i) => {
-          ingredient = ingredient.replace(unit, unitsShort[i]);
-       });
-    
-    // 2. Remove parentheses
-    ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');   
- 
-    // 3. Parse ingredients into count, unit and ingredient
-    const arrIng = ingredient.split(' ');
-    console.log(arrIng);
-    const unitIndex = arrIng.findIndex(el => unitsShort.includes(el));
-    
-    let objIng;
-    if(unitIndex > -1){
-       // There is a unit
-       const arrCount = arrIng.slice(0, unitIndex);
-    } else if (parseInt(arrIng[0], 10)){
-       // There is no unit, but 1st element is a number
-       objIng = {
-          count: parseInt(arrIng[0], 10),
-          unit: '',
-          ingredient: arrIng.slice(1).join(' ')
-       }
-    } else if (unitIndex === -1){
-       // There is no unit and no number in 1st position
-       objIng = {
-          count: 1,
-          unit: '',
-          ingredient
-       }
-    }
-    console.log(objIng);
-    
+function getSearchValue(){
+    // Present local data on page load
+    displayRecipes(data);
+    $('form').submit(e => {
+       e.preventDefault();
+       page = 1;
+       // Remove any previous items displayed
+       $('.container__top').empty();
+       // Get users search input
+       const userSearch = $('.search__recipes').val();
+       // Pass user input into an object
+       let query = { q: userSearch }
+       // Format user input into HTML encoded component
+       queryString = formatQueryParams(query);
+       // Display next button on search
+       $('.js__nextBtn').removeClass('hidden');
+       callSearchAPI();
+       // Clear search field
+       $('.search__recipes').val('');
     });
+ }
+ 
+ function formatQueryParams(params){
+    const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
+    return queryItems.join('&');
+ }
+
+// Fetch data from API endpoint using updated URL
+function callSearchAPI(){
+    // displayRecipes(data);
+    console.log(data);
+//     url = `${searchURL}?key=${apiKey}&count=10&sort=r&${queryString}&page=${page}`;
+//    fetch(url)
+//    .then(res => {
+//       if(res.ok){
+//          return res.json();
+//       }
+//       throw new Error(res.statusText);
+//    })
+//    .then(recipe => displayRecipes(recipe))
+//    .catch(err => {
+//       $('.js_error_message').text(`Something went wrong: ${err}`);
+//    });
 }
+
+// function ingredientList(){
+//     const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
+//     const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lb', 'lb'];
+    
+//     const ingredients = detailData.recipe.ingredients;
+//     // 1. Uniform Unit
+//     ingredients.map(cur => {
+//        let ingredient = cur.toLowerCase();
+//        unitsLong.forEach((unit, i) => {
+//           ingredient = ingredient.replace(unit, unitsShort[i]);
+//        });
+    
+//     // 2. Remove parentheses
+//     ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');   
+ 
+//     // 3. Parse ingredients into count, unit and ingredient
+//     const arrIng = ingredient.split(' ');
+//     console.log(arrIng);
+//     const unitIndex = arrIng.findIndex(el => unitsShort.includes(el));
+    
+//     let objIng;
+//     if(unitIndex > -1){
+//        // There is a unit
+//        const arrCount = arrIng.slice(0, unitIndex);
+//     } else if (parseInt(arrIng[0], 10)){
+//        // There is no unit, but 1st element is a number
+//        objIng = {
+//           count: parseInt(arrIng[0], 10),
+//           unit: '',
+//           ingredient: arrIng.slice(1).join(' ')
+//        }
+//     } else if (unitIndex === -1){
+//        // There is no unit and no number in 1st position
+//        objIng = {
+//           count: 1,
+//           unit: '',
+//           ingredient
+//        }
+//     }
+//     console.log(objIng);
+//     });
+// }
  
 // Next page event listener
 function updateNextPageOnClick(){
@@ -190,7 +235,6 @@ function updateNextPageOnClick(){
          $('.js__previousBtn').removeClass('hidden');
       }
       callSearchAPI();
-    //   callGetAPI();
    });
 }
 
@@ -203,18 +247,31 @@ function updatePreviousPageOnClick(){
          page = 1;
          $('.js__previousBtn').addClass('hidden');
       }
-      callSearchAPI();
-    //   callGetAPI();                                             
+      callSearchAPI();                                          
    }); 
 }
 
 // Display results to the page
-function displayRecipes(data, detailData){
+function displayRecipes(data){
    let recipes = data.recipes;
-   let recipeIds = recipes.forEach(id => console.log(id.recipe_id));
+    //    let idsForRecipes = '';
+   recipes.forEach(id => {
+       let newUrl = `${recipeURL}?key=${apiKey}&rId=${id.recipe_id}`;
+       console.log(newUrl);
+   });
+//     //    fetch(newUrl)
+//        .then(res => {
+//             if(res.ok){
+//                 return res.json();
+//             }
+//             throw new Error(res.statusText);
+//         })
+//         .then(ingredients => console.log(ingredients.ingredients))
+//         .catch(err => {
+//             $('.js_error_message').text(`Something went wrong: ${err}`);
+//         });
+//     })
 
-
-//    recipes.forEach(cur => console.log(`The recipe ${cur.title} is ${cur.recipe_id}`));
    // Remove previous items from screen
     $('.container__top').empty();
 
@@ -248,56 +305,10 @@ function displayRecipes(data, detailData){
     $('.container__top').removeClass('hidden');
 }
 
-// Fetch data from API endpoint using updated URL
-function callSearchAPI(){
-    displayRecipes(data);
-    console.log(data)
-//     url = `${searchURL}?key=${apiKey}&count=10&${queryString}&page=${page}`;
-//    fetch(url)
-//    .then(res => {
-//       if(res.ok){
-//          return res.json();
-//       }
-//       throw new Error(res.statusText);
-//    })
-//    .then(recipe => displayRecipes(recipe))
-//    .catch(err => {
-//       $('.js_error_message').text(`Something went wrong: ${err}`);
-//    });
-}
-
-function formatQueryParams(params){
-   const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
-   return queryItems.join('&');
-}
-
-
-function getSearchValue(){
-   // Present local data on page load
-   displayRecipes(data);
-   $('form').submit(e => {
-      e.preventDefault();
-      page = 1;
-      // Remove any previous items displayed
-      $('.container__top').empty();
-      // Get users search input
-      const userSearch = $('.search__recipes').val();
-      // Pass user input into an object
-      let query = { q: userSearch }
-      // Format user input into HTML encoded component
-      queryString = formatQueryParams(query);
-      // Display next button on search
-      $('.js__nextBtn').removeClass('hidden');
-      callSearchAPI();
-      // Clear search field
-      $('.search__recipes').val('');
-   });
-}
-
 function enableTopPage(){
-   $('.js__top').on('click', () => {
-       $(window).scrollTop(0);
-   });
+    $('.js__top').on('click', () => {
+        $(window).scrollTop(0);
+    });
 }
 
 function init(){
@@ -305,7 +316,7 @@ function init(){
    updateNextPageOnClick();
    updatePreviousPageOnClick();
    enableTopPage();
-   ingredient();
+//    ingredient();
 }
 
 $(init);
