@@ -335,7 +335,7 @@ function getSearchValue(){
  }
 
 // Fetch data from API endpoint using updated URL
-function callSearchAPI(){
+function callSearchAPI(url){
     // url = `${searchURL}?key=${apiKey}&count=10&sort=r&${queryString}&page=${page}`;
     // fetch(url)
     // .then(res => {
@@ -384,7 +384,7 @@ function displayRecipes(data){
     // On click get recipe_id
     // add id to url string for fetch call
     
-    flip(recipes);
+    // flip(recipes);
 
     // recipes.forEach(id => {
     //     let newUrl = `${recipeURL}?key=${apiKey}&rId=${id.recipe_id}`;
@@ -420,21 +420,41 @@ function displayRecipes(data){
                         <div class="centered js__title">${title}</div>
                     </div>
                     <div class="flip-card-back">
-                        <h1>Ingredients</h1> 
-                        <p>ingredient 1</p> 
-                        <p>ingredient 2</p>
-                        <p>ingredient 2</p>
-                        <p>ingredient 2</p>
-                        <p>ingredient 2</p>
-                        <div class="recipe__button">
-                            <a href="${cur.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
-                        </div>  
+                        
                     </div>
                 </div>
           </div>`)
     });
     $('.container__top').removeClass('hidden');
 }
+//     recipes.forEach(cur => {
+//         let title = cur.title;
+//         if(title.length > 28){
+//             title = `${title.substring(0, 30)}...`;
+//         }
+//         $('.container__top').append(
+//             `<div class="flip-card">
+//                 <div class="flip-card-inner">
+//                     <div class="flip-card-front">
+//                         <img src="${cur.image_url}" alt="${title}" id="${cur.recipe_id}" class="js__flip__img">
+//                         <div class="centered js__title">${title}</div>
+//                     </div>
+//                     <div class="flip-card-back">
+//                         <h1>Ingredients</h1> 
+//                         <p>ingredient 1</p> 
+//                         <p>ingredient 2</p>
+//                         <p>ingredient 2</p>
+//                         <p>ingredient 2</p>
+//                         <p>ingredient 2</p>
+//                         <div class="recipe__button">
+//                             <a href="${cur.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
+//                         </div>  
+//                     </div>
+//                 </div>
+//           </div>`)
+//     });
+//     $('.container__top').removeClass('hidden');
+// }
 
 // function ingredientList(){
 //     const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
@@ -485,16 +505,27 @@ function enableTopPage(){
     });
 }
 
-function flip(data) {
+function flip() {
     $('.container__top').on('click', '.flip-card', function(event){
         $(this).toggleClass('flipped');
         
         let id = $(this).find('img').attr('id');
         let newUrl = `${recipeURL}?key=${apiKey}&rId=${id}`; 
         console.log(newUrl);
-
-            // let newUrl = `${recipeURL}?key=${apiKey}&rId=${data.recipe_id}`; 
-        // console.log(newUrl);
+        $(this).find('.flip-card-back').append(
+            `<h1>Ingredients</h1> 
+                <p>ingredient 1</p> 
+                <p>ingredient 2</p>
+                <p>ingredient 2</p>
+                <p>ingredient 2</p>
+                <p>ingredient 2</p>
+                <div class="recipe__button">
+                    <a href="" target="_blank" class="js__view__btn">View Recipe</a>
+                </div>  `
+        )
+        // fetch newUrl data
+        // take result and append card with data
+        // on click click again, hide display
     });
 }
  
