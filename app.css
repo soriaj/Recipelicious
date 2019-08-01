@@ -166,7 +166,6 @@ body {
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-transform-origin: 50% 50%;
 }
 .flip-card-inner {
   position: relative;
@@ -183,7 +182,6 @@ body {
   -o-transform: rotateY( 180deg );
   transform: rotateY( 180deg );
 }
-
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
@@ -221,20 +219,24 @@ body {
   display: flex;
   justify-content: center;
   padding: 15px;
- }
- .js__view__btn {
+}
+.js__view__btn {
   background-color: Crimson;  
   border-radius: 5px;
   color: white;
   padding: .5em;
   text-decoration: none;
- } 
- .js__view__btn:focus,
- .js__view__btn:hover {
+} 
+.js__view__btn:focus,
+.js__view__btn:hover {
   background-color: FireBrick;
   color: White;
- }
- .footer {
+}
+.js_error_message {
+  text-align: center;
+  padding: 25px;
+}
+.footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -243,14 +245,14 @@ body {
   background-color: rgb(83, 83, 83);
   color: white;
   padding: 5px;
- }
- .footer a {
+}
+.footer a {
   text-decoration: none;
   color: white;
- }
- .hidden {
+}
+.hidden {
   display: none;
- }
+}
 @media only screen and (min-width: 768px){
  .search__form {
    max-width: 560px;
