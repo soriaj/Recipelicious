@@ -8,7 +8,6 @@ const recipeURL ='https://www.food2fork.com/api/get';
 // Page and User Query Defaults
 let page = 1;
 let queryString = '';
-// let ids = [];
 
 // Initial Page Display data
 const initialData = {
@@ -329,29 +328,30 @@ function getSearchValue(){
     });
  }
  
- function formatQueryParams(params){
+function formatQueryParams(params){
     const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return queryItems.join('&');
- }
+}
 
 // Fetch data from API endpoint using updated URL
 function callSearchAPI(url){
-    // url = `${searchURL}?key=${apiKey}&count=10&sort=r&${queryString}&page=${page}`;
-    // fetch(url)
-    // .then(res => {
-    //     if(res.ok){
-    //        return res.json();
-    //      }
-    //     throw new Error(res.statusText);
-    // })
-    // .then(recipe => displayRecipes(recipe))
-    // .catch(err => {
-    //     $('.js_error_message').text(`Something went wrong: ${err}`);
-    // });
-    displayRecipes(initialData);
+    url = `${searchURL}?key=${apiKey}&count=10&sort=r&${queryString}&page=${page}`;
+    fetch(url)
+    .then(res => {
+        if(res.ok){
+           return res.json();
+         }
+        throw new Error(res.statusText);
+    })
+    .then(recipe => displayRecipes(recipe))
+    .catch(err => {
+        $('.js_error_message').text(`Something went wrong: ${err}`);
+    });
+
+    // Test Data Below
+    // displayRecipes(initialData);
     // console.log(data);
 }
-
 
 // Next page event listener
 function updateNextPageOnClick(){
@@ -456,49 +456,6 @@ function displayRecipes(data){
 //     $('.container__top').removeClass('hidden');
 // }
 
-// function ingredientList(){
-//     const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
-//     const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lb', 'lb'];
-    
-//     const ingredients = detailData.recipe.ingredients;
-//     // 1. Uniform Unit
-//     ingredients.map(cur => {
-//        let ingredient = cur.toLowerCase();
-//        unitsLong.forEach((unit, i) => {
-//           ingredient = ingredient.replace(unit, unitsShort[i]);
-//        });
-    
-//     // 2. Remove parentheses
-//     ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');   
- 
-//     // 3. Parse ingredients into count, unit and ingredient
-//     const arrIng = ingredient.split(' ');
-//     console.log(arrIng);
-//     const unitIndex = arrIng.findIndex(el => unitsShort.includes(el));
-    
-//     let objIng;
-//     if(unitIndex > -1){
-//        // There is a unit
-//        const arrCount = arrIng.slice(0, unitIndex);
-//     } else if (parseInt(arrIng[0], 10)){
-//        // There is no unit, but 1st element is a number
-//        objIng = {
-//           count: parseInt(arrIng[0], 10),
-//           unit: '',
-//           ingredient: arrIng.slice(1).join(' ')
-//        }
-//     } else if (unitIndex === -1){
-//        // There is no unit and no number in 1st position
-//        objIng = {
-//           count: 1,
-//           unit: '',
-//           ingredient
-//        }
-//     }
-//     console.log(objIng);
-//     });
-// }
-
 function enableTopPage(){
     $('.js__top').on('click', () => {
         $(window).scrollTop(0);
@@ -510,46 +467,100 @@ function flip() {
         $(this).toggleClass('flipped');
         
         let id = $(this).find('img').attr('id');
-        let ingredientUrl = `${recipeURL}?key=${apiKey}&rId=${id}`; 
+        let ingredientUrl = `${recipeURL}?key=${apiKey}&rId=${id}`;
         console.log(ingredientUrl);
         
         // fetch(ingredientUrl)
-        .then(res => {
-            if(res.ok){
-                return res.json();
-            }
-            throw new Error(res.statusText);
-        })
-        .then(ingredient => ingredient)
-        .catch(err => {
-            $('.js_error_message').text(`Something went wrong: ${err}`);
-        })
-        // fetch newUrl data
-        // take result and append card with data
-        // on click click again, hide display
-        $(this).find('.flip-card-back').append(
-            `<h1>Ingredients</h1> 
-                <p>ingredient 1</p> 
-                <p>ingredient 2</p>
-                <p>ingredient 2</p>
-                <p>ingredient 2</p>
-                <p>ingredient 2</p>
-                <div class="recipe__button">
-                    <a href="${ingredient.recipe.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
-                </div>  `
-        )
-        
+        // .then(res => {
+        //     if(res.ok){
+        //         return res.json();
+        //     }
+        //     throw new Error(res.statusText);
+        // })
+        // .then(ingredient => displayIngredients(ingredient))
+        // .catch(err => {
+        //     $('.js_error_message').text(`Something went wrong: ${err}`);
+        // });
+
+        // Test Data
+        displayIngredients(ingredientData);      
     });
 }
- 
+
+function displayIngredients(data){
+    let ingredients = data.recipe.ingredients;
+    const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds', 'pound'];
+    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'lb', 'lb'];
+    let ingredientArr = [];
+
+    // Uniform Units
+    ingredients.map(cur => {
+       let ingredient = cur.toLowerCase();
+       unitsLong.forEach((unit, i) => {
+          ingredient = ingredient.replace(unit, unitsShort[i]);
+       });
+
+       // Remove parentheses if shown
+       ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
+
+       // 3. Parse ingredients into count, unit and ingredient
+        const arrIng = ingredient.split(' ');
+        const unitIndex = arrIng.findIndex(el => unitsShort.includes(el));
+
+        let objIng;
+        if(unitIndex > -1){
+           // Ex 4 1/2 cups, arrCount is [4, 1/2]
+           const arrCount = arrIng.slice(0, unitIndex); 
+
+           let count;
+           if(arrCount.length === 1){
+               count = eval(arrIng[0].replace('-', '+'));
+           } else {
+               count = eval(arrIng.slice(0, unitIndex).join('+'));
+           }
+
+           objIng = {
+               count: count,
+               unit: arrIng[unitIndex],
+               ingredient: arrIng.slice(unitIndex + 1).join(' ')
+           }
+
+        } else if (parseInt(arrIng[0], 10)){
+           // There is no unit, but first element is a number
+            objIng = {
+                count: parseInt(arrIng[0], 10),
+                unit: '',
+                ingredient: arrIng.slice(1).join(' ')
+            }
+        } else if (unitIndex === -1){
+           // There is no unit and no number in first position
+            objIng = {
+                count: 1,
+                unit: '',
+                ingredient: ingredient
+            }
+        }
+        ingredientArr.push(objIng);
+    });
+    $('.flip-card-back').empty();
+    $('.flip-card-back').append(
+        `<h1>Ingredients</h1> 
+            <p>${ingredientArr[0].count} ${ingredientArr[0].unit} ${ingredientArr[0].ingredient}</p>
+            <p>${ingredientArr[1].count} ${ingredientArr[1].unit} ${ingredientArr[1].ingredient}</p>
+            <p>${ingredientArr[2].count} ${ingredientArr[2].unit} ${ingredientArr[2].ingredient}</p>  
+            <p>${ingredientArr[3].count} ${ingredientArr[3].unit} ${ingredientArr[3].ingredient}</p>            
+            <div class="recipe__button">
+                <a href="${data.recipe.source_url}" target="_blank" class="js__view__btn">View Full Recipe</a>
+            </div>`
+    )
+    ingredientArr = [];
+}
 
 function init(){
    getSearchValue();
    updateNextPageOnClick();
    updatePreviousPageOnClick();
    enableTopPage();
-//    flip();
-//    ingredient();
 }
 
 $(init);
