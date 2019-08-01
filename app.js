@@ -1,7 +1,7 @@
 'use strict'
 
 // API Key and API Endpoint
-const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
+const apiKey = 'd270f61c8c9fe2ef89633f4b609966de';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
@@ -169,6 +169,8 @@ function formatQueryParams(params){
 // Fetch data from API endpoint using updated URL
 function callSearchAPI(url){
     url = `${searchURL}?key=${apiKey}&count=10&sort=r&${queryString}&page=${page}`;
+
+    // Search Recipes
     fetch(url)
     .then(res => {
         if(res.ok){
@@ -232,11 +234,9 @@ function displayRecipes(data){
                         <img src="${cur.image_url}" alt="${title}" id="${cur.recipe_id}" class="js__flip__img">
                         <div class="centered js__title">${title}</div>
                     </div>
-                    <div class="flip-card-back">
-                        
-                    </div>
+                    <div class="flip-card-back"></div>
                 </div>
-          </div>`)
+            </div>`)
     });
     $('.container__top').removeClass('hidden');
 }
