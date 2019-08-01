@@ -1,7 +1,7 @@
 'use strict'
 
 // API Key and API Endpoint
-const apiKey = 'd270f61c8c9fe2ef89633f4b609966de';
+const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
 const searchURL = 'https://www.food2fork.com/api/search';
 const recipeURL ='https://www.food2fork.com/api/get';
 
@@ -268,7 +268,7 @@ function flip() {
             $('.page__control').empty();
             $('.container__top').append(
                 `<div class="js_error_message">
-                    <h1>Sorry about that. There is an error accessing the recipes. If you're really hungry you may need to order take out.</h1>
+                    <h1>Sorry about that. There is an error accessing the recipe ingredient details. If you're really hungry you may need to order take out.</h1>
                 </div>`
             )
         });
