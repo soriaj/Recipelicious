@@ -510,8 +510,23 @@ function flip() {
         $(this).toggleClass('flipped');
         
         let id = $(this).find('img').attr('id');
-        let newUrl = `${recipeURL}?key=${apiKey}&rId=${id}`; 
-        console.log(newUrl);
+        let ingredientUrl = `${recipeURL}?key=${apiKey}&rId=${id}`; 
+        console.log(ingredientUrl);
+        
+        // fetch(ingredientUrl)
+        .then(res => {
+            if(res.ok){
+                return res.json();
+            }
+            throw new Error(res.statusText);
+        })
+        .then(ingredient => ingredient)
+        .catch(err => {
+            $('.js_error_message').text(`Something went wrong: ${err}`);
+        })
+        // fetch newUrl data
+        // take result and append card with data
+        // on click click again, hide display
         $(this).find('.flip-card-back').append(
             `<h1>Ingredients</h1> 
                 <p>ingredient 1</p> 
@@ -520,12 +535,10 @@ function flip() {
                 <p>ingredient 2</p>
                 <p>ingredient 2</p>
                 <div class="recipe__button">
-                    <a href="" target="_blank" class="js__view__btn">View Recipe</a>
+                    <a href="${ingredient.recipe.source_url}" target="_blank" class="js__view__btn">View Recipe</a>
                 </div>  `
         )
-        // fetch newUrl data
-        // take result and append card with data
-        // on click click again, hide display
+        
     });
 }
  

@@ -96,7 +96,7 @@ body {
  display: flex;
  justify-content: space-evenly;
  flex-wrap: wrap;
- margin-top: 25px;
+ margin-top: 50px;
  padding-bottom: 2.5rem;
 }
 .container__top h2 {
@@ -161,7 +161,7 @@ body {
   -webkit-transition: -webkit-transform 1s;
   -moz-transition: -moz-transform 1s;
   -o-transition: -o-transform 1s;
-  transition: transform 1s;
+  transition: transform 0.8s;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
