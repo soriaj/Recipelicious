@@ -169,6 +169,8 @@ function formatQueryParams(params){
 // Fetch data from API endpoint using updated URL
 function callSearchAPI(url){
     url = `${searchURL}?key=${apiKey}&count=10&sort=r&${queryString}&page=${page}`;
+
+    // Search Recipes
     fetch(url)
     .then(res => {
         if(res.ok){
@@ -232,11 +234,9 @@ function displayRecipes(data){
                         <img src="${cur.image_url}" alt="${title}" id="${cur.recipe_id}" class="js__flip__img">
                         <div class="centered js__title">${title}</div>
                     </div>
-                    <div class="flip-card-back">
-                        
-                    </div>
+                    <div class="flip-card-back"></div>
                 </div>
-          </div>`)
+            </div>`)
     });
     $('.container__top').removeClass('hidden');
 }
@@ -268,7 +268,7 @@ function flip() {
             $('.page__control').empty();
             $('.container__top').append(
                 `<div class="js_error_message">
-                    <h1>Sorry about that. There is an error accessing the recipes. If you're really hungry you may need to order take out.</h1>
+                    <h1>Sorry about that. There is an error accessing the recipe ingredient details. If you're really hungry you may need to order take out.</h1>
                 </div>`
             )
         });
