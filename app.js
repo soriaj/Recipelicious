@@ -1,9 +1,9 @@
 'use strict'
 
-// API Key and API Endpoint
-const apiKey = 'a2610ca4d9e6bc59e69d4f3fb879909b';
-const searchURL = 'https://www.food2fork.com/api/search';
-const recipeURL ='https://www.food2fork.com/api/get';
+// API Endpoint
+const searchURL = 'https://forkify-api.herokuapp.com/api/search'
+const recipeURL = 'https://forkify-api.herokuapp.com/api/get'
+const phrasesURL = 'https://forkify-api.herokuapp.com/phrases.html'
 
 // Page and User Query Defaults
 let page = 1;
@@ -14,128 +14,87 @@ const initialData = {
     "count": 10,
     "recipes": [
         {
-            "publisher": "Closet Cooking",
-            "f2f_url": "http://food2fork.com/view/35382",
-            "title": "Jalapeno Popper Grilled Cheese Sandwich",
-            "source_url": "http://www.closetcooking.com/2011/04/jalapeno-popper-grilled-cheese-sandwich.html",
-            "recipe_id": "35382",
-            "image_url": "http://static.food2fork.com/Jalapeno2BPopper2BGrilled2BCheese2BSandwich2B12B500fd186186.jpg",
-            "social_rank": 100.0,
-            "publisher_url": "http://closetcooking.com"
+            "publisher": "Simply Recipes",
+            "title": "How to Make Fruit Leather",
+            "source_url": "http://www.simplyrecipes.com/recipes/how_to_make_fruit_leather/",
+            "recipe_id": "36482",
+            "image_url": "http://forkify-api.herokuapp.com/images/fruitleather300x2001f9f84c4.jpg",
+            "social_rank": 99.99999999999989,
+            "publisher_url": "http://simplyrecipes.com"
         },
         {
             "publisher": "The Pioneer Woman",
-            "f2f_url": "http://food2fork.com/view/47024",
-            "title": "Perfect Iced Coffee",
-            "source_url": "http://thepioneerwoman.com/cooking/2011/06/perfect-iced-coffee/",
-            "recipe_id": "47024",
-            "image_url": "http://static.food2fork.com/icedcoffee5766.jpg",
-            "social_rank": 100.0,
+            "title": "Spicy Pasta Salad with Smoked Gouda, Tomatoes, and Basil",
+            "source_url": "http://thepioneerwoman.com/cooking/2011/06/spicy-pasta-salad-with-smoked-gouda-tomatoes-and-basil/",
+            "recipe_id": "47023",
+            "image_url": "http://forkify-api.herokuapp.com/images/5842229930_73a968f08e_zab23.jpg",
+            "social_rank": 99.99999999999517,
             "publisher_url": "http://thepioneerwoman.com"
         },
         {
             "publisher": "The Pioneer Woman",
-            "f2f_url": "http://food2fork.com/view/47319",
-            "title": "Crash Hot Potatoes",
-            "source_url": "http://thepioneerwoman.com/cooking/2008/06/crash-hot-potatoes/",
-            "recipe_id": "47319",
-            "image_url": "http://static.food2fork.com/CrashHotPotatoes5736.jpg",
-            "social_rank": 100.0,
+            "title": "Chicken Florentine Pasta",
+            "source_url": "http://thepioneerwoman.com/cooking/2012/04/chicken-florentine-pasta/",
+            "recipe_id": "46933",
+            "image_url": "http://forkify-api.herokuapp.com/images/florentineebc6.jpg",
+            "social_rank": 99.9999999999312,
+            "publisher_url": "http://thepioneerwoman.com"
+        },
+        {
+            "publisher": "The Pioneer Woman",
+            "title": "Bruschetta Chicken",
+            "source_url": "http://thepioneerwoman.com/cooking/2012/04/bruschetta-chicken/",
+            "recipe_id": "46932",
+            "image_url": "http://forkify-api.herokuapp.com/images/bruschafa5.jpg",
+            "social_rank": 99.99999999597819,
+            "publisher_url": "http://thepioneerwoman.com"
+        },
+        {
+            "publisher": "The Pioneer Woman",
+            "title": "Chicken Salad",
+            "source_url": "http://thepioneerwoman.com/cooking/2008/05/chicken-salad-the-way-i-like-it/",
+            "recipe_id": "47320",
+            "image_url": "http://forkify-api.herokuapp.com/images/ChickenSalad0ffa.jpg",
+            "social_rank": 99.99999994523066,
             "publisher_url": "http://thepioneerwoman.com"
         },
         {
             "publisher": "Two Peas and Their Pod",
-            "f2f_url": "http://food2fork.com/view/54384",
-            "title": "Stovetop Avocado Mac and Cheese",
-            "source_url": "http://www.twopeasandtheirpod.com/stovetop-avocado-mac-and-cheese/",
-            "recipe_id": "54384",
-            "image_url": "http://static.food2fork.com/avocadomacandcheesedc99.jpg",
-            "social_rank": 100.0,
+            "title": "Greek Tortellini Salad",
+            "source_url": "http://www.twopeasandtheirpod.com/greek-tortellini-salad/",
+            "recipe_id": "baaa28",
+            "image_url": "http://forkify-api.herokuapp.com/images/GreekTortelliniSalad6fbed.jpg",
+            "social_rank": 99.9999998548194,
             "publisher_url": "http://www.twopeasandtheirpod.com"
         },
         {
-            "publisher": "Closet Cooking",
-            "f2f_url": "http://food2fork.com/view/35171",
-            "title": "Buffalo Chicken Grilled Cheese Sandwich",
-            "source_url": "http://www.closetcooking.com/2011/08/buffalo-chicken-grilled-cheese-sandwich.html",
-            "recipe_id": "35171",
-            "image_url": "http://static.food2fork.com/Buffalo2BChicken2BGrilled2BCheese2BSandwich2B5002B4983f2702fe4.jpg",
-            "social_rank": 100.0,
-            "publisher_url": "http://closetcooking.com"
+            "publisher": "All Recipes",
+            "title": "Green Grape Salad",
+            "source_url": "http://allrecipes.com/Recipe/Green-Grape-Salad/Detail.aspx",
+            "recipe_id": "15368",
+            "image_url": "http://forkify-api.herokuapp.com/images/9150866d70.jpg",
+            "social_rank": 99.9999986085177,
+            "publisher_url": "http://allrecipes.com"
         },
         {
             "publisher": "The Pioneer Woman",
-            "f2f_url": "http://food2fork.com/view/d9a5e8",
-            "title": "Cinnamon Rolls",
-            "source_url": "http://thepioneerwoman.com/cooking/2007/06/cinammon_rolls_/",
-            "recipe_id": "d9a5e8",
-            "image_url": "http://static.food2fork.com/333323997_04bd8d6c53da11.jpg",
-            "social_rank": 100.0,
+            "title": "Pasta Salad with Tomatoes, Zucchini, and Feta",
+            "source_url": "http://thepioneerwoman.com/cooking/2011/03/pasta-salad-with-tomatoes-zucchini-and-feta/",
+            "recipe_id": "47041",
+            "image_url": "http://forkify-api.herokuapp.com/images/5566512470_9e98939ab3_z2766.jpg",
+            "social_rank": 99.99999855322939,
             "publisher_url": "http://thepioneerwoman.com"
         },
         {
-            "publisher": "101 Cookbooks",
-            "f2f_url": "http://food2fork.com/view/47746",
-            "title": "Best Pizza Dough Ever",
-            "source_url": "http://www.101cookbooks.com/archives/001199.html",
-            "recipe_id": "47746",
-            "image_url": "http://static.food2fork.com/best_pizza_dough_recipe1b20.jpg",
-            "social_rank": 100.0,
-            "publisher_url": "http://www.101cookbooks.com"
-        },
-        {
-            "publisher": "101 Cookbooks",
-            "f2f_url": "http://food2fork.com/view/47899",
-            "title": "Magic Sauce",
-            "source_url": "http://www.101cookbooks.com/archives/magic-sauce-recipe.html",
-            "recipe_id": "47899",
-            "image_url": "http://static.food2fork.com/magic_sauce_recipeece9.jpg",
-            "social_rank": 100.0,
-            "publisher_url": "http://www.101cookbooks.com"
-        },
-        {
-            "publisher": "The Pioneer Woman",
-            "f2f_url": "http://food2fork.com/view/47042",
-            "title": "Spicy Dr. Pepper Shredded Pork",
-            "source_url": "http://thepioneerwoman.com/cooking/2011/03/spicy-dr-pepper-shredded-pork/",
-            "recipe_id": "47042",
-            "image_url": "http://static.food2fork.com/5551711173_dc42f7fc4b_zbd8a.jpg",
-            "social_rank": 100.0,
-            "publisher_url": "http://thepioneerwoman.com"
-        },
-        {
-            "publisher": "Whats Gaby Cooking",
-            "f2f_url": "http://food2fork.com/view/713134",
-            "title": "Parmesan Roasted Potatoes",
-            "source_url": "http://whatsgabycooking.com/parmesan-roasted-potatoes/",
-            "recipe_id": "713134",
-            "image_url": "http://static.food2fork.com/ParmesanRoastedPotatoes11985a.jpg",
-            "social_rank": 100.0,
-            "publisher_url": "http://whatsgabycooking.com"
+            "publisher": "All Recipes",
+            "title": "White Peach Sangria",
+            "source_url": "http://allrecipes.com/Recipe/White-Peach-Sangria/Detail.aspx",
+            "recipe_id": "34447",
+            "image_url": "http://forkify-api.herokuapp.com/images/827522d5b0.jpg",
+            "social_rank": 99.99999753633911,
+            "publisher_url": "http://allrecipes.com"
         }
     ]
-}
-
-// Test ingredient data
-const ingredientData = {
-    "recipe": {
-       "publisher": "Closet Cooking",
-       "f2f_url": "http://food2fork.com/view/35382",
-       "ingredients": [
-         "2 jalapeno peppers, cut in half lengthwise and seeded",
-         "2 slices sour dough bread",
-         "1 tablespoon butter, room temperature",
-         "2 tablespoons cream cheese, room temperature",
-         "1/2 cup jack and cheddar cheese, shredded",
-         "1 tablespoon tortilla chips, crumbled\n"
-       ],
-       "source_url": "http://www.closetcooking.com/2011/04/jalapeno-popper-grilled-cheese-sandwich.html",
-       "recipe_id": "35382",
-       "image_url": "http://static.food2fork.com/Jalapeno2BPopper2BGrilled2BCheese2BSandwich2B12B500fd186186.jpg",
-       "social_rank": 100.0,
-       "publisher_url": "http://closetcooking.com",
-       "title": "Jalapeno Popper Grilled Cheese Sandwich"
-    }
 }
 
 function getSearchValue(){
@@ -168,7 +127,7 @@ function formatQueryParams(params){
 
 // Fetch data from API endpoint using updated URL
 function callSearchAPI(url){
-    url = `${searchURL}?key=${apiKey}&count=10&sort=r&${queryString}&page=${page}`;
+    url = `${searchURL}?${queryString}`;
 
     // Search Recipes
     fetch(url)
@@ -184,35 +143,13 @@ function callSearchAPI(url){
         $('.page__control').empty();
         $('.container__top').append(
             `<div class="js_error_message">
-                <h1>Sorry about that. There is an error accessing the recipes. If you're really hungry you may need to order take out.</h1>
+                <h1>
+                Looks like you may be really hungry and searched for something that doesn't exist. 
+                Please check the <a target='blank' href=${phrasesURL}>Phrases List</a> for supported searches.
+                </h1>
             </div>`
         )
     });
-}
-
-// Next page event listener
-function updateNextPageOnClick(){
-   $('.js__nextBtn').on('click', e => {
-      e.preventDefault();
-      page += 1;
-      if(page > 1) {
-         $('.js__previousBtn').removeClass('hidden');
-      }
-      callSearchAPI();
-   });
-}
-
-// Previous page event listener
-function updatePreviousPageOnClick(){
-   $('.js__previousBtn').on('click', e => {
-      e.preventDefault();
-      page -= 1;
-      if(page <= 1) {
-         page = 1;
-         $('.js__previousBtn').addClass('hidden');
-      }
-      callSearchAPI();                                          
-   }); 
 }
 
 // Display results to the page
@@ -252,7 +189,7 @@ function flip() {
         $(this).toggleClass('flipped').siblings().removeClass('flipped');
         
         let id = $(this).find('img').attr('id');
-        let ingredientUrl = `${recipeURL}?key=${apiKey}&rId=${id}`;
+        let ingredientUrl = `${recipeURL}?rId=${id}`;
         
         // Retrieve ingredient details
         fetch(ingredientUrl)
@@ -271,10 +208,7 @@ function flip() {
                     <h1>Sorry about that. There is an error accessing the recipe ingredient details. If you're really hungry you may need to order take out.</h1>
                 </div>`
             )
-        });
-
-        // Test Data Below
-        // displayIngredients(ingredientData);      
+        });  
     });
 }
 
@@ -294,8 +228,7 @@ function displayIngredients(data){
 
        // Remove parentheses if shown
        ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
-
-       // 3. Parse ingredients into count, unit and ingredient
+       // Parse ingredients into count, unit and ingredient
         const arrIng = ingredient.split(' ');
         const unitIndex = arrIng.findIndex(el => unitsShort.includes(el));
 
@@ -351,8 +284,6 @@ function displayIngredients(data){
 
 function init(){
    getSearchValue();
-   updateNextPageOnClick();
-   updatePreviousPageOnClick();
    enableTopPage();
 }
 
