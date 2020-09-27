@@ -1,10 +1,10 @@
 # Recipelicious
 
-Recipelicious is a webapp for finding delicious recipes. You can search for over 1,000,000 delicious recipes. 
+Recipelicious is a webapp for finding delicious recipes. You can search for smaple delicious recipes. 
 
 ## Motivation
 
-I wanted to create an app that would search top ranked receipes leveraging Food2Fork's API.
+I wanted to create an app that would search top ranked receipes leveraging Forkify API.
 
 ## Screenshot
 
